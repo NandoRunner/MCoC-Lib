@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <app-menu-toggle *ngIf="!page" slot="start" menu="main-menu"></app-menu-toggle>
+    <ion-buttons slot="start" *ngIf="page">
+      <ion-back-button defaultHref="/{{ page }}"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      >Heroes<div *ngIf="page">by {{ page }} '<b>{{ name }}</b>'</div></ion-title
+    >
+    <app-logout-button *ngIf="user"
+      slot="end"
+      menu="main-menu"
+    ></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+ <ion-searchbar *ngIf="!page" (ionChange)="changeSearchTerm($event.detail.value)"></ion-searchbar>
+
+  <ion-item *ngIf="!page">
+    <ion-label>Select Heroe Class Type</ion-label>
+    <ion-select (ionChange)="changeType($event.detail.value)">
+      <ion-select-option value=6>All</ion-select-option>
+      <ion-select-option value=0>Cosmic</ion-select-option>
+      <ion-select-option value=1>Tech</ion-select-option>
+      <ion-select-option value=2>Mutant</ion-select-option>
+      <ion-select-option value=3>Skill</ion-select-option>
+      <ion-select-option value=4>Science</ion-select-option>
+      <ion-select-option value=5>Mystic</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list *ngIf="results | async as items">
+    <ng-container *ngIf="items.length > 0; else noItems">
+      <app-heroes 
+      *ngFor="let i of items" 
+      [heroe]="i"
+      (isactive)="onDone($event)">
+      </app-heroes>
+    </ng-container>
+    <ng-template #noItems>
+      <ion-item lines="none">No heroe yet...</ion-item>
+    </ng-template>
+  </ion-list>
+</ion-content>

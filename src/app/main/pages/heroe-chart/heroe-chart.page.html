@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <app-menu-toggle slot="start" menu="main-menu"></app-menu-toggle>
+    <ion-title>Heroes Chart</ion-title>
+    <app-logout-button *ngIf="user"
+      slot="end"
+      menu="main-menu"
+    ></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Select Chart Type</ion-label>
+    <ion-select (ionChange)="changeType($event.detail.value)" value=0>
+      <ion-select-option value=0>Bar</ion-select-option>
+      <ion-select-option value=1>Pie</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Number of Heroes per class type</ion-card-subtitle>
+      <ion-card-title>MCoC</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div [hidden]="!showPie">
+        <canvas #viewPieChart></canvas>
+      </div>  
+      <div [hidden]="!showBar">
+        <canvas #viewBarChart></canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

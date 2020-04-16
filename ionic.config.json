@@ -1,0 +1,8 @@
+{
+  "name": "mcoc-lib",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "355d2330"
+}

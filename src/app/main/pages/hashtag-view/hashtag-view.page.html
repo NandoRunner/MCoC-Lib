@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <app-menu-toggle slot="start" menu="main-menu"></app-menu-toggle>
+    <ion-title>Hashtags</ion-title>
+    <app-logout-button *ngIf="user"
+      slot="end"
+      menu="main-menu"
+    ></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="results | async as items">
+    <ng-container *ngIf="items.length > 0; else noItems">
+      <app-hashtags *ngFor="let i of items" [input]="i"></app-hashtags>
+    </ng-container>
+    <ng-template #noItems>
+      <ion-item lines="none">No item yet...</ion-item>
+    </ng-template>
+  </ion-list>
+</ion-content>

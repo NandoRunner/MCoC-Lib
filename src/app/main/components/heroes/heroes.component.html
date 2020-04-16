@@ -1,0 +1,15 @@
+<ion-item [ngClass]="getCSS(heroe.heroeClass)">
+  <ion-avatar slot="start">
+    <ion-img [src]="getImage(heroe.heroeClass)"></ion-img>
+  </ion-avatar>
+  <ion-label class="ion-text-wrap">
+    {{ heroe.name }}
+  </ion-label>
+      <ion-toggle *ngIf="user"
+      slot="end"
+      color="primary"
+      [checked]="heroe.isactive"
+      (ionChange)="isactive.emit(heroe)"
+      (click)="$event.stopPropagation()"
+    ></ion-toggle>
+</ion-item>
