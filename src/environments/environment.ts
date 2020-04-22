@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-    firebase: {
+  CURRENT_VERSION: "0.20.5",
+  firebase: {
     apiKey: "AIzaSyA31kEoKrz0R4AkwyFJTq95ayH-qeBzPBY",
     authDomain: "mcoc-lib.firebaseapp.com",
     databaseURL: "https://mcoc-lib.firebaseio.com",

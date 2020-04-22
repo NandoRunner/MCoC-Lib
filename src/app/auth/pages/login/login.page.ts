@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { OverlayService } from 'src/app/core/services/overlay.service';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-login',
@@ -23,15 +24,21 @@ export class LoginPage implements OnInit {
 
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
+  appVersion: string;
+  appName: string;
+
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private overlayService: OverlayService
+    ,private appVersion: AppVersion
   ) {}
 
   ngOnInit(): void {
+    this.appVersion =  '1.2.1';
+    this.appName = "MCoC Lib";
     this.createForm();
   }
 
