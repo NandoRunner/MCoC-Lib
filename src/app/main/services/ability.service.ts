@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { BaseService } from './base-service';
 
 export enum AbilityType {
@@ -22,11 +21,11 @@ export class AbilityService extends BaseService {
   constructor(http: HttpClient) {
     super(http);
 
-    this.url = (this.local ? this.urlBaseLocalIIS : this.urlBase) + this.urlAll;
+    this.url = this.urlBase[this.urlType] + this.urlAll;
   }
 
   getData(type: AbilityType): Observable<any> {
-    this.url = `${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlAll}?type=${type}`;
+    this.url = `${this.urlBase[this.urlType]}${this.urlAll}?type=${type}`;
 
     console.log('URL: ', this.url);
 

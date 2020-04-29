@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  CURRENT_VERSION: "0.20.5",
+  CURRENT_VERSION: "0.20.8",
   firebase: {
     apiKey: "AIzaSyA31kEoKrz0R4AkwyFJTq95ayH-qeBzPBY",
     authDomain: "mcoc-lib.firebaseapp.com",

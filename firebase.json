@@ -1,5 +1,6 @@
 {
   "hosting": {
+  "site": "mcoc-lib",
     "public": "www",
     "ignore": [
       "firebase.json",

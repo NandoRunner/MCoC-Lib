@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { BaseService } from './base-service';
 import { Heroe } from '../models/heroe.model';
 import { HeroePerClass } from '../models/heroePerClass.model';
+import { BaseService } from './base-service';
 
 export enum HeroeClassType {
   Cosmic = 0,
@@ -37,16 +36,16 @@ export class HeroeService extends BaseService {
 
   getData(name: string, type: HeroeClassType): Observable<any> {
     if (name === '') {
-      this.url = `${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlAll}?heroe_class=${type}`;
+      this.url = `${this.urlBase[this.urlType]}${this.urlAll}?heroe_class=${type}`;
       return super.getAllChild(this.objName);
     } else {
-      this.url = `${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlByName}/${name}?heroe_class=${type}`;
+      this.url = `${this.urlBase[this.urlType]}${this.urlByName}/${name}?heroe_class=${type}`;
       return super.getAll();
     }
   }
 
   getByHashtag(id: string): Observable<any> {
-    return this.http.get(`${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlByHashtag}/${id}`).pipe(
+    return this.http.get(`${this.urlBase[this.urlType]}${this.urlByHashtag}/${id}`).pipe(
       map(results => {
         console.log('RAW: ', results);
         return results;
@@ -55,7 +54,7 @@ export class HeroeService extends BaseService {
   }
 
   getByAbility(id: string): Observable<any> {
-    return this.http.get(`${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlByAbility}/${id}`).pipe(
+    return this.http.get(`${this.urlBase[this.urlType]}${this.urlByAbility}/${id}`).pipe(
       map(results => {
         console.log('RAW: ', results);
         return results;
@@ -64,7 +63,7 @@ export class HeroeService extends BaseService {
   }
 
   getCountByClass(): Observable<HeroePerClass[]> {
-    return this.http.get(`${(this.local ? this.urlBaseLocalIIS : this.urlBase)}${this.urlCountByClass}`).pipe(
+    return this.http.get(`${this.urlBase[this.urlType]}${this.urlCountByClass}`).pipe(
       map(results => <HeroePerClass[]> results)
     );
   }

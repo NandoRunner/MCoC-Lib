@@ -1,16 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UrlBaseType } from '../models/urlBaseType.enum';
 
 export class BaseService {
-  urlBase = 'https://fandradetecinfo.tk/mcocapi/';
-  urlBaseAlt = 'https://fandradetecinfo-001-site1.itempurl.com/mcocapi/';
-  urlBaseLocalDev = 'https://localhost:60441/';
-  urlBaseLocalIIS = 'http://localhost/mcocapi/';
+    
+  urlBase: string[] = [
+      'https://fandradetecinfo.tk/mcocapi/', 
+      'https://fandradetecinfo-001-site1.itempurl.com/mcocapi/',
+      'https://localhost:60441/',
+      'http://localhost/mcocapi/',
+      'https://mcocapi.azurewebsites.net/'];
+
+  urlType: UrlBaseType = UrlBaseType.Azure;
   
   protected url: string;
   protected debug = false;
-  protected local = true;
 
   constructor(protected http: HttpClient) {}
 

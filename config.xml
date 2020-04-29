@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fandradetecinfo.mcoclib" version="0.20.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.fandradetecinfo.mcoclib" version="0.20.8">
     <name>mcoc-lib</name>
     <description>MCOC Library</description>
     <author email="nando.az@gmail.com" href="https://github.com/NandoRunner/MCoC-Lib">NandoRunner</author>
