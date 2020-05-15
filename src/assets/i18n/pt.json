@@ -1,0 +1,46 @@
+{
+  "save": "Salvar",
+  "page": {
+    "saving": "Salvando...",
+    "errorSaving": "Erro salvando "
+  },
+  "date": "Data",
+  "no-list": "Sem itens cadastrados...",
+  "chart": {
+    "select": "Selecione o Tipo de Gráfico",
+    "bar": { "name": "Barra", "title": "Últimas 10 medições", "subTitle": "Gráfico Barra" },
+    "pie": { "name": "Pizza", "title": "Número de testes por grupo", "subTitle": "Gráfico Pizza" }
+  },
+  "weight": {
+    "title": "Medições de Peso",
+    "menu": "Peso",
+    "new": "Nova Medição de Peso",
+    "edit": "Editar Medição de Peso"
+  },
+  "blood-pressure": {
+    "title": "Medições de Pressão Arterial",
+    "hr": "Frequência (bpm)",
+    "menu": "Pressão Arterial",
+    "new": "Nova Medição de Pressão Arterial",
+    "edit": "Editar Medição de Pressão Arterial"
+  },
+  "glucose": {
+    "title": "Medições de Glicose",
+    "menu": "Glicose",
+    "new": "Nova Medição de Glicose",
+    "edit": "Editar Medição de Glicose"
+
+  },
+  "login": {
+    "name": "Nome",
+    "password": "Senha",
+    "login": "ENTRAR",
+    "signup": "Registrar",
+    "exists": "Já possuo uma conta",
+    "new": "Criar conta",
+    "facebook": "Entrar com o Facebook",
+    "logout": "Deseja realmente sair?",
+    "yes": "Sim",
+    "no": "Não"
+  }
+}

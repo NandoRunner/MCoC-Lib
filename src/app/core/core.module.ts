@@ -12,18 +12,35 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from 'src/environments/environment';
 
-import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader, TranslateStore } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { IonicStorageModule } from '@ionic/storage';
+
+export function CreateTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   imports: [
     IonicModule.forRoot(),
-    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence({experimentalTabSynchronization: true})
+    AngularFirestoreModule.enablePersistence({ synchronizeTabs: true }),
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: CreateTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [BrowserModule, IonicModule],
   providers: [
+    TranslateStore,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

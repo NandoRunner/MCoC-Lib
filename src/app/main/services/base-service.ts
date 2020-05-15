@@ -8,10 +8,10 @@ export class BaseService {
   urlBase: string[] = [
       'https://fandradetecinfo.tk/mcocapi/', 
       'https://fandradetecinfo-001-site1.itempurl.com/mcocapi/',
-      'https://localhost:60441/',
+      'https://localhost:44323/',
       'http://localhost/mcocapi/',
-      'https://mcocapi.azurewebsites.net/'];
-
+      'https://mcoc-webapi.azurewebsites.net/'];
+      
   urlType: UrlBaseType = UrlBaseType.Azure;
   
   protected url: string;

@@ -15,6 +15,7 @@ export enum AbilityType {
 })
 export class AbilityService extends BaseService {
   urlAll = 'Abilitys/v1';
+  urlByName = 'Abilitys/v1/GetByName';
 
   colors = ['regular', 'extended', 'counter'];
 
@@ -24,11 +25,13 @@ export class AbilityService extends BaseService {
     this.url = this.urlBase[this.urlType] + this.urlAll;
   }
 
-  getData(type: AbilityType): Observable<any> {
-    this.url = `${this.urlBase[this.urlType]}${this.urlAll}?type=${type}`;
-
-    console.log('URL: ', this.url);
-
-    return super.getAll();
+  getData(name: string, type: AbilityType): Observable<any> {
+    if (name === '') {
+      this.url = `${this.urlBase[this.urlType]}${this.urlAll}?type=${type}`;
+      return super.getAll();
+    } else {
+      this.url = `${this.urlBase[this.urlType]}${this.urlByName}/${name}?type=${type}`;
+      return super.getAll();
+    }
   }
 }

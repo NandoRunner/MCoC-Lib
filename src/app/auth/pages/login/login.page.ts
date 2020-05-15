@@ -6,25 +6,27 @@ import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { OverlayService } from 'src/app/core/services/overlay.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
   authForm: FormGroup;
   authProviders = AuthProvider;
   configs = {
     isSignIn: true,
-    action: 'Login',
-    actionChange: 'Create account'
+    action: 'login.login',
+    actionChange: 'login.new'
   };
+  myVersion: string;
+  myProject: string;
+  myIcon: string;
 
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
-  public myVersion: string;
-  public myName: string;
 
   constructor(
     private authService: AuthService,
@@ -32,17 +34,19 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private overlayService: OverlayService
-  ) {}
+  ) {
+    this.myVersion = environment.CURRENT_VERSION;
+    this.myProject = environment.firebase.projectId;
+    this.myIcon = environment.icon;
+  }
 
   ngOnInit(): void {
-    this.myVersion =  '0.20.x';
-    this.myName = "MCoC Lib";
     this.createForm();
   }
 
   private createForm(): void {
     this.authForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email] ],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -62,8 +66,8 @@ export class LoginPage implements OnInit {
   changeAuthAction(): void {
     this.configs.isSignIn = !this.configs.isSignIn;
     const { isSignIn } = this.configs;
-    this.configs.action = isSignIn ? 'Login' : 'Sign Up';
-    this.configs.actionChange = isSignIn ? 'Create account' : 'Already have an account';
+    this.configs.action = isSignIn ? 'login.login' : 'login.signup';
+    this.configs.actionChange = isSignIn ? 'login.new' : 'login.exists';
     !isSignIn
       ? this.authForm.addControl('name', this.nameControl)
       : this.authForm.removeControl('name');
@@ -77,11 +81,13 @@ export class LoginPage implements OnInit {
         user: this.authForm.value,
         provider
       });
-      this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/heroes');
+      this.navCtrl.navigateForward(
+        this.route.snapshot.queryParamMap.get('redirect') || `/${environment.init_page}`
+      );
     } catch (e) {
       console.log('Auth error: ', e);
       await this.overlayService.toast({
-       message: e.message
+        message: e.message
       });
     } finally {
       loading.dismiss();

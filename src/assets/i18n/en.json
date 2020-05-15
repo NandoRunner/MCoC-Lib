@@ -1,0 +1,35 @@
+{
+  "save": "Save",
+  "page": {
+    "saving": "Saving...",
+    "errorSaving": "Error saving "
+  },
+  "no-list": "No List yet...",
+  "date": "Date",
+  "chart": {
+    "select": "Select Chart Type",
+    "bar": { "name": "Bar", "title": "Last 10 tests", "subTitle": "Bar Chart" },
+    "pie": { "name": "Pie", "title": "Tests count per group", "subTitle": "Pie Chart" }
+  },
+  "weight": { "title": "Weight Measurements", "menu": "Weight", "new": "New", "edit": "Edit" },
+  "blood-pressure": {
+    "title": "Blood Pressure Tests",
+    "hr": "Heart Rate (bpm)",
+    "menu": "Blood Pressure",
+    "new": "New",
+    "edit": "Edit"
+  },
+  "glucose": { "title": "Glucose Tests", "menu": "Glucose", "new": "New", "edit": "Edit" },
+  "login": {
+    "name": "Name",
+    "password": "Senha",
+    "login": "ENTRAR",
+    "signup": "Sign Up",
+    "exists": "Already have an account",
+    "new": "Create account",
+    "facebook": "Login with Facebook", 
+    "logout": "Do you really want to quit?",
+    "yes": "Yes",
+    "no": "no"
+  }
+}
