@@ -5,7 +5,13 @@
   <ion-label class="ion-text-wrap">
     {{ heroe.name }}
   </ion-label>
-      <ion-toggle *ngIf="user"
+  <ion-button *ngIf="heroe.infoPage != 'none'" 
+    [href]="heroe.infoPage" 
+    target="_blank" 
+    color="light">
+    Info
+  </ion-button>
+  <ion-toggle *ngIf="user"
       slot="end"
       color="primary"
       [checked]="heroe.isactive"

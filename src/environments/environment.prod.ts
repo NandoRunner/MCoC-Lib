@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  CURRENT_VERSION: "0.20.11",
+  CURRENT_VERSION: "0.20.13",
+  hostingName: "MCoC Library",
   icon: "pulse",
   init_page: "heroes", 
   firebase: {

@@ -36,10 +36,12 @@ export class HeroeService extends BaseService {
 
   getData(name: string, type: HeroeClassType): Observable<any> {
     if (name === '') {
-      this.url = `${this.urlBase[this.urlType]}${this.urlAll}?heroe_class=${type}`;
+      this.url = `${this.urlBase[this.urlType]}${this.urlAll}?heroeClass=${type}`;
+      // console.log(this.url);
       return super.getAllChild(this.objName);
     } else {
-      this.url = `${this.urlBase[this.urlType]}${this.urlByName}/${name}?heroe_class=${type}`;
+      this.url = `${this.urlBase[this.urlType]}${this.urlByName}/${name}?heroeClass=${type}`;
+      // console.log(this.url);
       return super.getAll();
     }
   }
