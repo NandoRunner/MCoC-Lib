@@ -6,6 +6,8 @@ export interface Heroe {
   heroeClass: string;
   infoPage: string;
   isactive: boolean;
-  h: Hashtag[];
+  abilities: string;
+  counters: string;
+  hashtags: string;
 }
 

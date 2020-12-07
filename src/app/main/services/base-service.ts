@@ -12,7 +12,7 @@ export class BaseService {
       'http://localhost/mcoc-webapi/',
       'https://mcoc-webapi.azurewebsites.net/'];
       
-  urlType: UrlBaseType = UrlBaseType.LocalDev;
+  urlType: UrlBaseType = UrlBaseType.Azure;
   
   protected url: string;
   protected debug = false;

@@ -1,24 +1,48 @@
+.heroe-detail {
+  font-size: 0.8em;
+}
+
 .mystic{
-  color: purple;
+  color: #7922B5;
 }
 .cosmic{
-  color: rgb(15, 148, 195);
+  color: #0F94D7;
 }
-
 .tech{
-  color: darkblue;
+  color: #1D2AD7;
 }
-
 .mutant{
-  color: rgb(238, 183, 19);
+  color: #EEB713;
 }
-
 .skill{
-  color: rgb(204, 22, 22);
+  color: #CC1616;
+}
+.science{
+  color: #17A207;
 }
 
-.science{
-  color: green;
+.mystic-bg{
+  --background: #7922B5;
+}
+.cosmic-bg{
+  --background: #0F94D7;
+}
+.tech-bg{
+  --background: #1D2AD7;
+}
+.mutant-bg{
+  --background: #EEB713;
+}
+.skill-bg{
+  --background: #CC1616;
+}
+.science-bg{
+  --background: #17A207;
+}
+
+.mystic-bg, .cosmic-bg, .tech-bg, .mutant-bg, .skill-bg, .science-bg 
+{
+  --color: #fff;
 }
 
 .regular{
@@ -32,3 +56,4 @@
 .counter{
   color: green;
 }
+

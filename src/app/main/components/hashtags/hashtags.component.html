@@ -1,5 +1,6 @@
-<ion-item button (click)="this.buttonClick()">
-  <ion-label class="ion-text-wrap">
+<ion-item button (click)="this.buttonClick()"
+  [ngClass]="{ 'heroe-detail': isDetail==true }">
+  <ion-label>
     {{ input.name }}
   </ion-label>
 </ion-item>

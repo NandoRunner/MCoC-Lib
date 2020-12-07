@@ -1,21 +1,41 @@
-<ion-item [ngClass]="getCSS(heroe.heroeClass)">
+<ion-item [ngClass]="getCSS(heroe.heroeClass)" (click)="toggleDetails()">
   <ion-avatar slot="start">
     <ion-img [src]="getImage(heroe.heroeClass)"></ion-img>
   </ion-avatar>
   <ion-label class="ion-text-wrap">
     {{ heroe.name }}
   </ion-label>
-  <ion-button *ngIf="heroe.infoPage != 'none'" 
+
+  <ion-button *ngIf="heroe.infoPage != 'none' && !showDetails" 
     [href]="heroe.infoPage" 
     target="_blank" 
     color="light">
-    Info
+    <ion-icon name="globe-outline" [ngClass]="getCSS(heroe.heroeClass)"></ion-icon>
   </ion-button>
-  <ion-toggle *ngIf="user"
+  <ion-toggle *ngIf="user && !showDetails"
       slot="end"
       color="primary"
       [checked]="heroe.isactive"
       (ionChange)="isactive.emit(heroe)"
       (click)="$event.stopPropagation()"
     ></ion-toggle>
+    <ion-label *ngIf="showDetails" slot="end" class="heroe-detail">
+      <i># Hashtags</i>
+    </ion-label>
 </ion-item>
+
+<ion-item-group  *ngIf="showDetails">
+  
+   <ion-list *ngIf="detailsResults | async as items">
+    <ng-container *ngIf="items.length > 0">
+      <app-hashtags 
+      *ngFor="let i of items" 
+      [input]="i"
+      [isDetail]="showDetails">
+      </app-hashtags>
+    </ng-container>
+  </ion-list>
+
+
+</ion-item-group>
+
