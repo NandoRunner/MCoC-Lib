@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { OverlayService } from 'src/app/core/services/overlay.service';
-import { AbilityService, AbilityType } from '../../services/ability.service';
+import { AbilityService } from '../../services/ability.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AbilityType } from '../../models/abilityType.enum';
 
 @Component({
   selector: 'app-counter-view',

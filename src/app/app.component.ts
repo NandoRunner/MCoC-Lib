@@ -27,10 +27,10 @@ export class AppComponent {
 
   initializeApp() {
     this.pages = [
-      { url: '/heroes', direction: 'back', icon: 'checkmark', text: 'Heroes' },
+      { url: '/heroes', direction: 'back', icon: 'my-thor-hammer', text: 'Heroes' },
       { url: '/abilities', direction: 'back', icon: 'checkmark', text: 'Abilities' },
       { url: '/counters', direction: 'back', icon: 'checkmark', text: 'Counters' },
-      { url: '/hashtags', direction: 'back', icon: 'checkmark', text: 'Hashtags' },
+      { url: '/hashtags', direction: 'back', icon: 'my-hashtag', text: 'Hashtags' },
       { url: '/heroes/chart', direction: 'back', icon: 'stats-chart', text: 'Heroes Charts' },
     ];
 

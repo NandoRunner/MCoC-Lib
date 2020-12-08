@@ -3,48 +3,52 @@ import { Heroe } from '../../models/heroe.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable } from 'rxjs';
 import { HashtagService } from '../../services/hashtag.service';
+import { DetailType } from '../../models/detailType.enum';
+import { AbilityService } from '../../services/ability.service';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['../../../app.component.scss']
 })
+
 export class HeroesComponent implements OnInit{
   colors = ['cosmic', 'tech', 'mutant', 'skill', 'science', 'mystic'];
   backgrounds = ['cosmic-bg', 'tech-bg', 'mutant-bg', 'skill-bg', 'science-bg', 'mystic-bg'];
   user: firebase.User;
-  public showDetails = false;
 
-  detailsResults: Observable<any>;
+  public detailType = DetailType.None;
+
+  detailsResults: Observable<any>[] = [];
 
   @Input() heroe: any;
   @Output() isactive = new EventEmitter<Heroe>();
 
   constructor(private authService: AuthService,
-    private hashtagService: HashtagService) {
+    private hashtagService: HashtagService,
+    private abilityService: AbilityService) {
     this.authService.authState$.subscribe(user => (this.user = user));
   }
 
   getCSS(str: string): string {
-    if (this.showDetails)
-    {
-      return this.backgrounds[str];
-    }
-    else
-    {
-      return this.colors[str];
-    }
- }
+    return (this.detailType == 0) ? this.colors[str] : this.backgrounds[str];
+  }
  
   getImage(str: string): string {
     return `./assets/images/${this.colors[str]}.png`;
   }
 
+  getHeroeClass(str: string): string {
+    return `${this.colors[str]}`;
+  }
+
   toggleDetails() {
-    this.showDetails = !this.showDetails;
+    this.detailType = (++this.detailType%3);
+    //console.log('URL: ', this.detailType);
   }
 
   async ngOnInit(): Promise<void> {
-    this.detailsResults = this.hashtagService.getByHeroe(this.heroe.id);
+    this.detailsResults[0] = this.abilityService.getByHeroe(this.heroe.id);
+    this.detailsResults[1] = this.hashtagService.getByHeroe(this.heroe.id);
   }
 }

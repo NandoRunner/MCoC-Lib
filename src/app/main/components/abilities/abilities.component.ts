@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['../../../app.component.scss']
 })
 export class AbilitiesComponent {
+  @Input() isDetail: boolean = false;
   @Input() input: any;
 
   constructor(private router: Router) {}

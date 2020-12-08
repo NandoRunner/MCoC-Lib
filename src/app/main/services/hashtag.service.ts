@@ -20,7 +20,9 @@ export class HashtagService extends BaseService {
   getByHeroe(id: string): Observable<any> {
     return this.http.get(`${this.urlBase[this.urlType]}${this.urlByHeroe}/${id}`).pipe(
       map(results => {
-        console.log('RAW: ', results);
+        if (this.debug) {
+          console.log('RAW: ', results);
+        }
         return results;
       })
     );

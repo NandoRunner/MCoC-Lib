@@ -3,18 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Heroe } from '../models/heroe.model';
+import { HeroeClassType } from '../models/heroeClassType.enum';
 import { HeroePerClass } from '../models/heroePerClass.model';
 import { BaseService } from './base-service';
-
-export enum HeroeClassType {
-  Cosmic = 0,
-  Tech = 1,
-  Mutant = 2,
-  Skill = 3,
-  Science = 4,
-  Mystic = 5,
-  ALL = 6
-}
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +40,9 @@ export class HeroeService extends BaseService {
   getByHashtag(id: string): Observable<any> {
     return this.http.get(`${this.urlBase[this.urlType]}${this.urlByHashtag}/${id}`).pipe(
       map(results => {
-        console.log('RAW: ', results);
+        if (this.debug) {
+          console.log('RAW: ', results);
+        }
         return results;
       })
     );
@@ -58,7 +51,9 @@ export class HeroeService extends BaseService {
   getByAbility(id: string): Observable<any> {
     return this.http.get(`${this.urlBase[this.urlType]}${this.urlByAbility}/${id}`).pipe(
       map(results => {
-        console.log('RAW: ', results);
+        if (this.debug) {
+          console.log('RAW: ', results);
+        }
         return results;
       })
     );

@@ -21,6 +21,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
+                "glob": "**/*.svg",
+                "input": "src/assets/custom",
+                "output": "./svg"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
@@ -30,6 +35,7 @@
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               }
+   
             ],
             "styles": [
               {

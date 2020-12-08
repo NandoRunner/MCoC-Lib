@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 
 import { OverlayService } from 'src/app/core/services/overlay.service';
 
-import { HeroeService, HeroeClassType } from '../../services/heroe.service';
+import { HeroeService } from '../../services/heroe.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Chart } from 'chart.js';

@@ -1,41 +1,58 @@
 <ion-item [ngClass]="getCSS(heroe.heroeClass)" (click)="toggleDetails()">
   <ion-avatar slot="start">
-    <ion-img [src]="getImage(heroe.heroeClass)"></ion-img>
+    <ion-img [src]="getImage(heroe.heroeClass)" [alt]="getHeroeClass(heroe.heroeClass)"></ion-img>
   </ion-avatar>
   <ion-label class="ion-text-wrap">
     {{ heroe.name }}
   </ion-label>
 
-  <ion-button *ngIf="heroe.infoPage != 'none' && !showDetails" 
+  <ion-button *ngIf="heroe.infoPage != 'none' && detailType==0" 
     [href]="heroe.infoPage" 
     target="_blank" 
     color="light">
     <ion-icon name="globe-outline" [ngClass]="getCSS(heroe.heroeClass)"></ion-icon>
   </ion-button>
-  <ion-toggle *ngIf="user && !showDetails"
+  <ion-toggle *ngIf="user && detailType==0"
       slot="end"
       color="primary"
       [checked]="heroe.isactive"
       (ionChange)="isactive.emit(heroe)"
       (click)="$event.stopPropagation()"
     ></ion-toggle>
-    <ion-label *ngIf="showDetails" slot="end" class="heroe-detail">
-      <i># Hashtags</i>
+    <ion-label *ngIf="detailType==1" slot="end" class="heroe-detail">
+      <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+      Abilities
+    </ion-label>
+    <ion-label *ngIf="detailType==2" slot="end" class="heroe-detail">
+      <ion-icon slot="icon-only" name="my-hashtag"></ion-icon>
+      Hashtags
     </ion-label>
 </ion-item>
 
-<ion-item-group  *ngIf="showDetails">
+<ion-item-group  *ngIf="detailType==1">
   
-   <ion-list *ngIf="detailsResults | async as items">
+   <ion-list *ngIf="detailsResults[0] | async as items">
     <ng-container *ngIf="items.length > 0">
-      <app-hashtags 
+      <app-abilities 
       *ngFor="let i of items" 
       [input]="i"
-      [isDetail]="showDetails">
-      </app-hashtags>
+      [isDetail]="true">
+      </app-abilities>
     </ng-container>
   </ion-list>
 
+</ion-item-group>
+<ion-item-group  *ngIf="detailType==2">
+  
+  <ion-list *ngIf="detailsResults[1] | async as items">
+   <ng-container *ngIf="items.length > 0">
+     <app-hashtags 
+     *ngFor="let i of items" 
+     [input]="i"
+     [isDetail]="true">
+     </app-hashtags>
+   </ng-container>
+ </ion-list>
 
 </ion-item-group>
 

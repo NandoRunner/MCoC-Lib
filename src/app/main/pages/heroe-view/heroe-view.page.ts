@@ -5,10 +5,11 @@ import { take } from 'rxjs/operators';
 
 import { OverlayService } from 'src/app/core/services/overlay.service';
 
-import { HeroeService, HeroeClassType } from '../../services/heroe.service';
+import { HeroeService } from '../../services/heroe.service';
 import { ActivatedRoute } from '@angular/router';
 import { Heroe } from '../../models/heroe.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { HeroeClassType } from '../../models/heroeClassType.enum';
 
 @Component({
   selector: 'app-heroe-view',
