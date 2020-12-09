@@ -1,7 +1,8 @@
-import { OnInit, ViewChild } from '@angular/core';
+import { OnInit, ViewChild, Directive } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js';
 
+@Directive()
 export class BaseChartPage implements OnInit {
 
   protected title: string;

@@ -1,0 +1,72 @@
+[33mcommit 67be41d5c326b84b6f7a4133143c0a94dc35966d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Tue Dec 8 19:40:25 2020 -0300
+
+    Angular update 8 - part 2
+
+[33mcommit 5054982da1fc3c8644c65c02cbc9027406b2029d[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Tue Dec 8 19:31:07 2020 -0300
+
+    Angular update 8
+
+[33mcommit 924f2f60fca9a89d6a55a006c748530ab663df7f[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Tue Dec 8 18:59:48 2020 -0300
+
+    Abilities by heroe | custom icons
+
+[33mcommit 92785aa5334db747633f14310f94b5dc07ad5190[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Mon Dec 7 19:43:10 2020 -0300
+
+    Hashtags by heroe
+
+[33mcommit 531e96dcc3c435229b71dd405e665dac66023b70[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Thu Sep 10 11:14:31 2020 -0300
+
+    Info page
+
+[33mcommit 19ab2f726dbb12bb0ae8c797a178ae0491c571f6[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Fri May 15 02:04:38 2020 -0300
+
+    Translation
+
+[33mcommit abe85803367c88dfc1a7c16b293649d2aa588829[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Wed Apr 29 19:15:02 2020 -0300
+
+    Url base refactoring
+
+[33mcommit 062349f1d873f5b3facda5cf0f10c583ec43be3a[m
+Merge: b25beff 33cdfd8
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Wed Apr 22 19:09:05 2020 -0300
+
+    Auto Increment Version
+
+[33mcommit b25beffa323a10a8eea7478eca97ce354fa33135[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Wed Apr 22 18:57:39 2020 -0300
+
+    Auto Increment Version
+
+[33mcommit 33cdfd8fc6035a2e8b587d87996e0a8c8e902763[m
+Author: Fernando Andrade <nando.az@gmail.com>
+Date:   Wed Apr 15 21:34:14 2020 -0300
+
+    Update README.md
+
+[33mcommit e6ec8e65ca10e2dd9e3979669a58744de532e05b[m
+Author: NandoRunner <nando.az@gmail.com>
+Date:   Wed Apr 15 21:32:44 2020 -0300
+
+    Migration from Ionic App Flow
+
+[33mcommit 4f41c16b82e48661d5119c0604974d232a6f8355[m
+Author: Fernando Andrade <nando.az@gmail.com>
+Date:   Wed Apr 15 20:41:53 2020 -0300
+
+    Initial commit
