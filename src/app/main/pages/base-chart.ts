@@ -16,8 +16,8 @@ export class BaseChartPage implements OnInit {
   protected classTypes: string[];
   protected listLabels: string[];
 
-  @ViewChild('viewPieChart', null) viewPieChart;
-  @ViewChild('viewBarChart', null) viewBarChart;
+  @ViewChild('viewPieChart', {static: false}) viewPieChart;
+  @ViewChild('viewBarChart', {static: false}) viewBarChart;
 
   protected myPieChart: any;
   protected myBarChart: any;
