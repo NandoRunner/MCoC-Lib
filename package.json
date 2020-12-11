@@ -1,6 +1,6 @@
 {
 	"name": "mcoc-lib",
-	"version": "0.20.27",
+	"version": "0.20.28",
 	"author": "NandoRunner",
 	"homepage": "http://https://mcoc-lib.web.app",
 	"scripts": {
@@ -32,6 +32,7 @@
 		"@ionic/storage": "^2.2.0",
 		"@ngx-translate/core": "^11.0.1",
 		"@ngx-translate/http-loader": "^4.0.0",
+		"angular-tag-cloud-module": "^5.2.0",
 		"chart.js": "^2.9.4",
 		"cordova-android": "^9.0.0",
 		"cordova-browser": "^6.0.0",

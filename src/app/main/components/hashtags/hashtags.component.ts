@@ -13,7 +13,9 @@ export class HashtagsComponent {
   constructor(private router: Router) {}
 
   buttonClick() {
-    this.router.navigate(['/heroes', this.input.id, this.input.name, '3'], {
+    this.router.navigate(['/heroes', 
+      this.isDetail ? this.input.id : this.input.name, 
+      this.isDetail ? this.input.name : this.input.hashtagName, '3'], {
       skipLocationChange: true
     });
   }

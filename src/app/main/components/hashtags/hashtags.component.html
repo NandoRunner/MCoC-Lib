@@ -1,5 +1,5 @@
 <ion-item button (click)="this.buttonClick()">
   <ion-label [ngClass]="{ 'heroe-detail': isDetail == true }">
-    {{isDetail ? '# ' : ''}} {{ input.name }}
+    {{isDetail ? '# ' : ''}} {{ isDetail ? input.name : input.hashtagName }}
   </ion-label>
 </ion-item>

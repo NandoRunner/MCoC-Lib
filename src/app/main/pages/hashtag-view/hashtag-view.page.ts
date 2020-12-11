@@ -32,11 +32,14 @@ export class HashtagViewPage implements OnInit {
 
   async loadData() {
     this.loading = await this.overlayService.loading();
-    this.results = this.hashtagService.getAll();
+    //this.results = this.hashtagService.getAll();
+    this.results = this.hashtagService.getCountByHeroe();
+    //todo: count
     this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
   }
 
   async ionViewDidLoad() {
+    console.log("tudo");
     // this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
   }
 }
