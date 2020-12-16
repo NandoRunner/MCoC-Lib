@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HashtagPerHeroe } from '../models/hashtagPerHeroe.model';
+import { HeroePerHashtag } from '../models/heroePerHashtag.model';
 import { BaseService } from './base-service';
 
 @Injectable({
@@ -31,9 +31,14 @@ export class HashtagService extends BaseService {
     );
   }
 
-  getCountByHeroe(): Observable<HashtagPerHeroe[]> {
+  getCountByHeroe(): Observable<HeroePerHashtag[]> {
     return this.http.get(`${this.urlBase[this.urlType]}${this.urlHeroeCountBy}`).pipe(
-      map(results => <HashtagPerHeroe[]> results)
+      map(results => {
+        //if (this.debug) {
+          console.log('RAW: ', results);
+        //}
+        return <HeroePerHashtag[]> results;
+      })
     );
   }
 

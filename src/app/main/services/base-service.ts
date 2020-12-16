@@ -6,13 +6,11 @@ import { UrlBaseType } from '../models/urlBaseType.enum';
 export class BaseService {
     
   urlBase: string[] = [
-      'https://fandradetecinfo.tk/mcocapi/', 
-      'https://fandradetecinfo-001-site1.itempurl.com/mcocapi/',
       'https://localhost:44305/',
       'http://localhost/mcoc-webapi/',
       'https://mcoc-webapi.azurewebsites.net/'];
       
-  urlType: UrlBaseType = UrlBaseType.LocalIIS;
+  urlType: UrlBaseType = UrlBaseType.Azure;
   
   protected url: string;
   protected debug = false;

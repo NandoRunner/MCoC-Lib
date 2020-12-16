@@ -1,7 +1,5 @@
 export enum UrlBaseType {
-    MyAspNetSSL = 0,
-    MyAspNet = 1,
-    LocalDev = 2,
-    LocalIIS = 3,
-    Azure = 4
+    VisualStudio = 0,
+    IIS = 1,
+    Azure = 2
 }

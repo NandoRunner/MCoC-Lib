@@ -14,6 +14,7 @@ import { HashtagService } from "../../services/hashtag.service";
         [width]="options.width"
         [height]="options.height"
         [overflow]="options.overflow"
+        [strict]="true" 
         (clicked)="ItemClicked($event)"
         [zoomOnHover]="zoomOnHoverOptions"
       >
@@ -35,8 +36,11 @@ export class TagcloudHashtagComponent implements OnInit {
       this.data.push({
         text: a.hashtagName,
         color: this.getRandomColor(),
+        weight: a.qty
+
       });
       this.map[a.hashtagName] = a.name;
+
     });
   }
 
@@ -71,9 +75,9 @@ export class TagcloudHashtagComponent implements OnInit {
   };
 
   zoomOnHoverOptions: ZoomOnHoverOptions = {
-    scale: 1.3, // Elements will become 130 % of current zize on hover
-    transitionTime: 1.2, // it will take 1.2 seconds until the zoom level defined in scale property has been reached
-    delay: 0.8 // Zoom will take affect after 0.8 seconds
+    scale: 1.5, // Elements will become 130 % of current zize on hover
+    transitionTime: 0.5, // it will take 1.2 seconds until the zoom level defined in scale property has been reached
+    delay: 0.5 // Zoom will take affect after 0.8 seconds
   };
 
   // data: CloudData[] = [
