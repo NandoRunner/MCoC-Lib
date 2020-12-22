@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HashtagService } from '../../services/hashtag.service';
 import { DetailType } from '../../models/detailType.enum';
 import { AbilityService } from '../../services/ability.service';
+import { GlobalService } from '../../../core/services/global.service';
 
 @Component({
   selector: 'app-heroes',
@@ -13,6 +14,7 @@ import { AbilityService } from '../../services/ability.service';
 })
 
 export class HeroesComponent implements OnInit{
+  [x: string]: any;
   colors = ['cosmic', 'tech', 'mutant', 'skill', 'science', 'mystic'];
   backgrounds = ['cosmic-bg', 'tech-bg', 'mutant-bg', 'skill-bg', 'science-bg', 'mystic-bg'];
   user: firebase.User;
@@ -26,7 +28,8 @@ export class HeroesComponent implements OnInit{
 
   constructor(private authService: AuthService,
     private hashtagService: HashtagService,
-    private abilityService: AbilityService) {
+    private abilityService: AbilityService,
+    private global: GlobalService) {
     this.authService.authState$.subscribe(user => (this.user = user));
   }
 
@@ -44,7 +47,7 @@ export class HeroesComponent implements OnInit{
 
   toggleDetails() {
     this.detailType = (++this.detailType%3);
-    //console.log('URL: ', this.detailType);
+    if (this.global.isDebug)  console.log('URL: ', this.detailType);
   }
 
   async ngOnInit(): Promise<void> {

@@ -7,6 +7,7 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 
 import { HashtagService } from '../../services/hashtag.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { GlobalService } from 'src/app/core/services/global.service';
 
 @Component({
   selector: 'app-hashtag-view',
@@ -22,8 +23,12 @@ export class HashtagViewPage implements OnInit {
     private authService: AuthService,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private hashtagService: HashtagService
-  ) {}
+    private hashtagService: HashtagService,
+    private global: GlobalService
+  ) {
+    global.data = [];
+    global.map.clear();
+  }
 
   async ngOnInit(): Promise<void> {
     this.authService.authState$.subscribe(user => (this.user = user));
@@ -32,14 +37,11 @@ export class HashtagViewPage implements OnInit {
 
   async loadData() {
     this.loading = await this.overlayService.loading();
-    //this.results = this.hashtagService.getAll();
-    this.results = this.hashtagService.getCountByHeroe();
-    //todo: count
+    this.results = await this.hashtagService.getCountByHeroe();
     this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
   }
 
   async ionViewDidLoad() {
-    console.log("tudo");
     // this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
   }
 }

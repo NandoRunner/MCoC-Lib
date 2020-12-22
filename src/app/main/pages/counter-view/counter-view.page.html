@@ -16,6 +16,7 @@
   <ion-list *ngIf="results | async as items">
     <ng-container *ngIf="items.length > 0; else noItems">
       <app-counters *ngFor="let i of items" [input]="i"></app-counters>
+      <app-tagcloud [type]=2></app-tagcloud>
     </ng-container>
     <ng-template #noItems>
       <ion-item lines="none">No item yet...</ion-item>

@@ -7,11 +7,11 @@ import { HashtagsComponent } from './hashtags/hashtags.component';
 import { CountersComponent } from './counters/counters.component';
 import { AbilitiesComponent } from './abilities/abilities.component';
 import { TagCloudModule } from 'angular-tag-cloud-module';
-import { TagcloudHashtagComponent } from './tagcloud-hashtag/tagcloud-hashtag.component';
+import { TagcloudComponent } from './tagcloud/tagcloud.component';
 
 @NgModule({
-  declarations: [HeroesComponent, HashtagsComponent, CountersComponent, AbilitiesComponent, TagcloudHashtagComponent],
+  declarations: [HeroesComponent, HashtagsComponent, CountersComponent, AbilitiesComponent, TagcloudComponent],
   imports: [SharedModule, TagCloudModule],
-  exports: [HeroesComponent, HashtagsComponent, CountersComponent, AbilitiesComponent, TagcloudHashtagComponent]
+  exports: [HeroesComponent, HashtagsComponent, CountersComponent, AbilitiesComponent, TagcloudComponent]
 })
 export class ComponentsModule {}

@@ -1,46 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AbilityType } from '../models/abilityType.enum';
 import { BaseService } from './base-service';
-
+import { GlobalService } from '../../core/services/global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AbilityService extends BaseService {
-  urlAll = 'Abilitys/v1';
-  urlByName = 'Abilitys/v1/GetByName';
 
   urlByHeroe = 'HeroeAbilitys/v1/GetObjectB';
 
-  colors = ['regular', 'extended', 'counter'];
 
-  constructor(http: HttpClient) {
-    super(http);
-
+  constructor(http: HttpClient, global: GlobalService) {
+    super(http, global);
+    this.urlAll = 'Abilitys/v1';
+    this.urlByName = 'Abilitys/v1/GetByName';
+    this.urlHeroeCountBy = 'Abilitys/v1/GetHeroeCountPerAbility';
     this.url = this.urlBase[this.urlType] + this.urlAll;
   }
 
-  getData(name: string, type: AbilityType): Observable<any> {
-    if (name === '') {
-      this.url = `${this.urlBase[this.urlType]}${this.urlAll}?type=${type}`;
-      return super.getAll();
-    } else {
-      this.url = `${this.urlBase[this.urlType]}${this.urlByName}/${name}?type=${type}`;
-      return super.getAll();
-    }
+  getData(name: string, type: any): Observable<any> {
+    return this.get(
+      this.getDataURL(name, 'type', type, true),
+      "RAW: Ability.GetAll "
+    );
   }
 
   getByHeroe(id: string): Observable<any> {
-    return this.http.get(`${this.urlBase[this.urlType]}${this.urlByHeroe}/${id}`).pipe(
-      map(results => {
-        if (this.debug) {
-          console.log('RAW: ', results);
-        }
-        return results;
-      })
+    return this.get(
+      `${this.urlBase[this.urlType]}${this.urlByHeroe}/${id}`,
+      "RAW: Ability.getByHeroe "
+    );
+  }
+
+  getCountByHeroe(): Observable<any> {
+    return this.get(
+      `${this.urlBase[this.urlType]}${this.urlHeroeCountBy}`,
+      "RAW: Ability.getCountByHeroe "
     );
   }
 }

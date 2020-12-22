@@ -77,8 +77,8 @@ export class BaseChartPage implements OnInit {
     var i = 0;
     this.lists$.forEach(a => {
       a.forEach(b => {
-        this.myPieChart.data.datasets[0].backgroundColor[i] = this.colorArray[b.name];
-        this.myPieChart.data.labels[i] = b.className;
+        this.myPieChart.data.datasets[0].backgroundColor[i] = this.colorArray[b.id];
+        this.myPieChart.data.labels[i] = b.name;
         this.myPieChart.data.datasets[0].data[i++] = b.qty;
         this.myPieChart.update();
       });
@@ -93,8 +93,8 @@ export class BaseChartPage implements OnInit {
     var i = 0;
     this.lists$.forEach(a => {
       a.forEach(b => {
-        this.myBarChart.data.datasets[0].backgroundColor[i] = this.colorArray[b.name];
-        this.myBarChart.data.labels[i] = b.className;
+        this.myBarChart.data.datasets[0].backgroundColor[i] = this.colorArray[b.id];
+        this.myBarChart.data.labels[i] = b.name;
         this.myBarChart.data.datasets[0].data[i++] = b.qty;
         this.myBarChart.update();
       });

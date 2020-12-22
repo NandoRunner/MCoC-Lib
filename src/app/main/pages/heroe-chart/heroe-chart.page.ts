@@ -1,17 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { OverlayService } from 'src/app/core/services/overlay.service';
 
 import { HeroeService } from '../../services/heroe.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Chart } from 'chart.js';
-import { HeroePerClass } from '../../models/heroePerClass.model';
-import { HeroeViewPageRoutingModule } from '../heroe-view/heroe-view-routing.module';
 import { BaseChartPage } from '../base-chart';
+import { HeroesCountBy } from '../../models/heroesCountBy.model';
 
 @Component({
   selector: 'app-heroe-chart',
@@ -27,7 +23,7 @@ export class HeroeChartPage extends BaseChartPage {
     private heroeService: HeroeService
   ) {
     super();
-    this.lists$ = new Observable<HeroePerClass[]>();
+    this.lists$ = new Observable<HeroesCountBy[]>();
     }
 
   async ngOnInit(): Promise<void> {

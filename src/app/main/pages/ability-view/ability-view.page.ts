@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 import { AbilityService } from '../../services/ability.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AbilityType } from '../../models/abilityType.enum';
+import { GlobalService } from '../../../core/services/global.service';
 
 @Component({
   selector: 'app-ability-view',
@@ -19,13 +20,19 @@ export class AbilityViewPage implements OnInit {
   user: firebase.User;
   searchTerm: string;
   type: AbilityType = AbilityType.Regular;
+
+  finishedLoading: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor(
     private authService: AuthService,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private service: AbilityService
-  ) {}
+    private service: AbilityService,
+    private global: GlobalService
+  ) {
+    global.data = [];
+    global.map.clear();
+  }
 
   async ngOnInit(): Promise<void> {
     this.searchTerm = '';
@@ -43,12 +50,20 @@ export class AbilityViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    console.log('selectedValue: ', param);
+    if (this.global.isDebug)  console.log('-> selectedValue: ', param);
     this.searchTerm = param;
     await this.loadData();
   }
 
-  async ionViewDidLoad() {
+  ionViewDidLoad() {
     // this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
+    // this.finishedLoading.emit(true);
+    // console.log('FIM - Ability 2');
+  }
+
+  ngAfterViewChecked() {
+    // you could also do this after a service call of some sort
+      //  this.finishedLoading.emit(true);
+      //  console.log('FIM - Ability');
   }
 }

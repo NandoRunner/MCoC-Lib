@@ -1,66 +1,34 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input  } from "@angular/core";
 import { Router } from "@angular/router";
 import { CloudData, CloudOptions, ZoomOnHoverOptions } from "angular-tag-cloud-module";
-import { Observable } from "rxjs";
-import { Hashtag } from "../../models/hashtag.model";
-import { HashtagService } from "../../services/hashtag.service";
+import { GlobalService } from "../../../core/services/global.service";
 
 @Component({
-  selector: "app-tagcloud-hashtag",
+  selector: "app-tagcloud",
   template: `
     <div>
       <angular-tag-cloud
-        [data]="data"
+        [data]="global.data"
         [width]="options.width"
         [height]="options.height"
         [overflow]="options.overflow"
         [strict]="true" 
         (clicked)="ItemClicked($event)"
-        [zoomOnHover]="zoomOnHoverOptions"
+        
       >
       </angular-tag-cloud>
     </div>
-  `,
+  `
 })
-export class TagcloudHashtagComponent implements OnInit {
-  @Input() input: Observable<any>;
+export class TagcloudComponent {
+  @Input() type: number;
 
-  map = new Map<string, string>();
-
-  data: CloudData[] = [];
-
-  constructor(private router: Router) {}
-
-  async ngOnInit(): Promise<void> {
-    this.input.forEach((a) => {
-      this.data.push({
-        text: a.hashtagName,
-        color: this.getRandomColor(),
-        weight: a.qty
-
-      });
-      this.map[a.hashtagName] = a.name;
-
-    });
-  }
-
-  getRandomColor() {
-    var color = Math.floor(0x1000000 * Math.random()).toString(16);
-    return "#" + ("000000" + color).slice(-6);
-  }
-
-  getRandomColor2() {
-    var length = 6;
-    var chars = '0123456789ABCDEF';
-    var hex = '#';
-    while(length--) hex += chars[(Math.random() * 16) | 0];
-    return hex;
-  }
+  constructor(private router: Router, public global: GlobalService) {}
 
   ItemClicked(clicked: CloudData) {
-    //console.log(clicked);
+    if (this.global.isDebug) console.log('-> CloudData', clicked);
     this.router
-      .navigate(["/heroes", this.map[clicked.text], clicked.text, "3"], {
+      .navigate(["/heroes", this.global.map[clicked.text], clicked.text, this.type], {
         skipLocationChange: true,
       });
   }

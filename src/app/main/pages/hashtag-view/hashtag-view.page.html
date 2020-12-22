@@ -13,11 +13,11 @@
   <ion-list *ngIf="results | async as items">
     <ng-container *ngIf="items.length > 0; else noItems">
       <app-hashtags *ngFor="let i of items" [input]="i"></app-hashtags>
+      <app-tagcloud [type]=3></app-tagcloud>
     </ng-container>
     <ng-template #noItems>
       <ion-item lines="none">No item yet...</ion-item>
     </ng-template>
-    <app-tagcloud-hashtag [input]="items"></app-tagcloud-hashtag>
   </ion-list>
   
 </ion-content>

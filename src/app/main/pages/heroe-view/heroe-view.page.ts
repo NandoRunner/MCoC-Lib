@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Heroe } from '../../models/heroe.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HeroeClassType } from '../../models/heroeClassType.enum';
+import { GlobalService } from '../../../core/services/global.service';
 
 @Component({
   selector: 'app-heroe-view',
@@ -33,7 +34,8 @@ export class HeroeViewPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private heroeService: HeroeService
+    private heroeService: HeroeService,
+    private global: GlobalService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -48,6 +50,7 @@ export class HeroeViewPage implements OnInit {
   async loadData() {
     this.loading = await this.overlayService.loading();
 
+
     if (this.filterType === null) {
       this.results = this.heroeService.getData(this.searchTerm, this.type);
       this.page = '';
@@ -55,7 +58,7 @@ export class HeroeViewPage implements OnInit {
       this.results = this.heroeService.getByHashtag(this.id);
       this.page = 'hashtags';
     } else if (this.filterType === '2') {
-      this.results = this.heroeService.getByHashtag(this.id);
+      this.results = this.heroeService.getByAbility(this.id);
       this.page = 'counters';
     } else {
       this.results = this.heroeService.getByAbility(this.id);
@@ -74,7 +77,7 @@ export class HeroeViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    console.log('selectedValue: ', param);
+    if (this.global.isDebug) console.log('-> selectedValue: ', param);
     this.type = HeroeClassType.ALL;
     this.searchTerm = param;
     await this.loadData();

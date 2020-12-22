@@ -15,6 +15,8 @@ export class AppComponent {
   pages: { url: string; direction: string; icon: string; text: string }[];
   user: firebase.User;
 
+  public
+
   constructor(
     private authService: AuthService,
     private platform: Platform,

@@ -7,6 +7,7 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 import { AbilityService } from '../../services/ability.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AbilityType } from '../../models/abilityType.enum';
+import { GlobalService } from '../../../core/services/global.service';
 
 @Component({
   selector: 'app-counter-view',
@@ -24,8 +25,12 @@ export class CounterViewPage implements OnInit {
     private authService: AuthService,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private service: AbilityService
-  ) {}
+    private service: AbilityService,
+    private global: GlobalService
+  ) {
+    global.data = [];
+    global.map.clear();
+  }
 
   async ngOnInit(): Promise<void> {
     this.searchTerm = '';
@@ -43,7 +48,7 @@ export class CounterViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    console.log('selectedValue: ', param);
+    if (this.global.isDebug)  console.log('-> selectedValue: ', param);
     this.searchTerm = param;
     await this.loadData();
   }
