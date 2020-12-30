@@ -22,8 +22,11 @@ import { GlobalService } from "../../../core/services/global.service";
 })
 export class TagcloudComponent {
   @Input() type: number;
+  global: any;
 
-  constructor(private router: Router, public global: GlobalService) {}
+  constructor(private router: Router) {
+    this.global = GlobalService.getInstance();
+  }
 
   ItemClicked(clicked: CloudData) {
     if (this.global.isDebug) console.log('-> CloudData', clicked);

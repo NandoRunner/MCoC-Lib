@@ -28,8 +28,8 @@ export class HeroesComponent implements OnInit{
 
   constructor(private authService: AuthService,
     private hashtagService: HashtagService,
-    private abilityService: AbilityService,
-    private global: GlobalService) {
+    private abilityService: AbilityService)
+  {
     this.authService.authState$.subscribe(user => (this.user = user));
   }
 

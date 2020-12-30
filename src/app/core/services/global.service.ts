@@ -11,12 +11,26 @@ export class GlobalService {
   public data: CloudData[];
   public map: Map<string, string>;
 
-  constructor() 
+  private static instance: GlobalService = null;
+
+  public name: string;
+  public id: string;
+
+
+  private constructor() 
   { 
     this.isDebug = false;
     this.data = [];
     this.map = new Map<string, string>();
   }
+
+  public static getInstance(): GlobalService {
+    if (!GlobalService.instance) {
+      GlobalService.instance = new GlobalService();
+    }
+
+    return GlobalService.instance;
+}
 
   public getRandomColor() {
     var color = Math.floor(0x1000000 * Math.random()).toString(16);

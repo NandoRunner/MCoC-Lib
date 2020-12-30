@@ -44,7 +44,7 @@ export class LogoutButtonComponent implements OnInit {
             text: translation.yes,
             handler: async () => {
               await this.authService.logout();
-              await this.menuCtrl.enable(false, this.menu);
+              //await this.menuCtrl.enable(false, this.menu);
               this.navCtrl.navigateRoot('/heroes');
             }
           },

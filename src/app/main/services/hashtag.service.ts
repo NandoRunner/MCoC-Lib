@@ -12,8 +12,8 @@ export class HashtagService extends BaseService {
   urlByHeroe = 'HeroeHashtags/v1/GetObjectB';
   urlHeroeCountBy = 'Hashtags/v1/GetHeroeCountPerHashtag';
 
-  constructor(http: HttpClient, global: GlobalService) {
-    super(http, global);
+  constructor(http: HttpClient) {
+    super(http);
     this.urlAll = 'Hashtags/v1';
     this.url = this.urlBase[this.urlType] + this.urlAll;
   }

@@ -17,8 +17,8 @@ export class HeroeService extends BaseService {
 
   objName = "serverResponse";
 
-  constructor(http: HttpClient, global: GlobalService) {
-    super(http, global);
+  constructor(http: HttpClient) {
+    super(http);
     this.urlAll = "Heroes/v1";
     this.urlByName = "Heroes/v1/GetByName";
   }

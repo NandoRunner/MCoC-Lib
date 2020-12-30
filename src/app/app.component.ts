@@ -47,6 +47,10 @@ export class AppComponent {
           text: 'Login'
         });
       }
+      else
+      {
+        //console.log(user);
+      }
     });
 
     this.platform.ready().then(() => {

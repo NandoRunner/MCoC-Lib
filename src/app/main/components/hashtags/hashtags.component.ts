@@ -12,15 +12,15 @@ export class HashtagsComponent implements OnInit {
   @Input() isDetail: boolean = false;
   @Input() input: HeroesCountBy;
 
-  constructor(private router: Router, private global: GlobalService) {}
+  constructor(private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    this.global.data.push({
+    GlobalService.getInstance().data.push({
       text: this.input.name,
-      color: this.global.getRandomColor2(),
+      color: GlobalService.getInstance().getRandomColor2(),
       weight: this.input.qty
     });
-    this.global.map[this.input.name] = this.input.id;
+    GlobalService.getInstance().map[this.input.name] = this.input.id;
   }
 
   buttonClick() {

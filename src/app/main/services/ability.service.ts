@@ -13,8 +13,8 @@ export class AbilityService extends BaseService {
   urlByHeroe = 'HeroeAbilitys/v1/GetObjectB';
 
 
-  constructor(http: HttpClient, global: GlobalService) {
-    super(http, global);
+  constructor(http: HttpClient) {
+    super(http);
     this.urlAll = 'Abilitys/v1';
     this.urlByName = 'Abilitys/v1/GetByName';
     this.urlHeroeCountBy = 'Abilitys/v1/GetHeroeCountPerAbility';

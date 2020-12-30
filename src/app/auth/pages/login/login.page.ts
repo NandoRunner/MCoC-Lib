@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
 import { OverlayService } from 'src/app/core/services/overlay.service';
+import { UserService } from 'src/app/main/services/user.service';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -33,7 +34,8 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private userService: UserService
   ) {
     this.myVersion = environment.CURRENT_VERSION;
     this.myProject = environment.hostingName;
@@ -81,6 +83,9 @@ export class LoginPage implements OnInit {
         user: this.authForm.value,
         provider
       });
+      
+      this.userService.create(credentials.user.email);
+
       this.navCtrl.navigateForward(
         this.route.snapshot.queryParamMap.get('redirect') || `/${environment.init_page}`
       );

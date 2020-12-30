@@ -23,11 +23,10 @@ export class HashtagViewPage implements OnInit {
     private authService: AuthService,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private hashtagService: HashtagService,
-    private global: GlobalService
+    private hashtagService: HashtagService
   ) {
-    global.data = [];
-    global.map.clear();
+    GlobalService.getInstance().data = [];
+    GlobalService.getInstance().map.clear();
   }
 
   async ngOnInit(): Promise<void> {

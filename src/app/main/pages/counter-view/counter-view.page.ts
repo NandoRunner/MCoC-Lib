@@ -25,11 +25,10 @@ export class CounterViewPage implements OnInit {
     private authService: AuthService,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private service: AbilityService,
-    private global: GlobalService
+    private service: AbilityService
   ) {
-    global.data = [];
-    global.map.clear();
+    GlobalService.getInstance().data = [];
+    GlobalService.getInstance().map.clear();
   }
 
   async ngOnInit(): Promise<void> {
@@ -48,7 +47,7 @@ export class CounterViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    if (this.global.isDebug)  console.log('-> selectedValue: ', param);
+    if (GlobalService.getInstance().isDebug)  console.log('-> selectedValue: ', param);
     this.searchTerm = param;
     await this.loadData();
   }

@@ -34,8 +34,7 @@ export class HeroeViewPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private overlayService: OverlayService,
-    private heroeService: HeroeService,
-    private global: GlobalService
+    private heroeService: HeroeService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -77,7 +76,7 @@ export class HeroeViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    if (this.global.isDebug) console.log('-> selectedValue: ', param);
+    if (GlobalService.getInstance().isDebug) console.log('-> selectedValue: ', param);
     this.type = HeroeClassType.ALL;
     this.searchTerm = param;
     await this.loadData();
@@ -85,6 +84,8 @@ export class HeroeViewPage implements OnInit {
 
   async onDone(o: Heroe) {
     const toUpdate = { ...o, isactive: !o.isactive };
+    //todo: call UserHeroe
+    console.log(toUpdate);
     await this.heroeService.update(toUpdate);
     await this.overlayService.toast({
       message: `Heroe "${o.name}" ${toUpdate.isactive ? ' added to' : ' removed from'} My Heroes!`
