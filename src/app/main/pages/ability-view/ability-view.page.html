@@ -15,7 +15,7 @@
 
   <ion-list *ngIf="results | async as items">
     <ng-container *ngIf="items.length > 0; else noItems">
-      <app-abilities *ngFor="let i of items" [input]="i"></app-abilities>
+      <app-abilities *ngFor="let i of items" [input]="i" [routerLink]="['/heroes', i.id, i.name, this.type]"></app-abilities>
       <app-tagcloud [type]=1></app-tagcloud>
     </ng-container>
     <ng-template #noItems>

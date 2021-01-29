@@ -27,12 +27,12 @@ export class AbilitiesComponent implements OnInit {
     GlobalService.getInstance().map[this.input.name] = this.input.id;
   }
 
-  buttonClick() {
-    this.router.navigate(
-      ["/heroes", this.input.id, this.input.name, AbilityType.Regular],
-      {
-        skipLocationChange: true,
-      }
-    );
-  }
+  // buttonClick() {
+  //   this.router.navigate(
+  //     ["/heroes", this.input.id, this.input.name, AbilityType.Regular],
+  //     {
+  //       skipLocationChange: true,
+  //     }
+  //   );
+  // }
 }
