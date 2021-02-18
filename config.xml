@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.fandradetecinfo.mcoclib" version="0.20.47">
+<widget id="com.fandradetecinfo.mcoclib" version="0.20.48">
     <name>mcoc-lib</name>
-    <description>MCOC Library</description>
+    <description>MCoC Library</description>
     <author email="nando.az@gmail.com" href="http://github.com/NandoRunner/MCoC-Lib">NandoRunner</author>
     <content src="index.html" />
     <access origin="*" />

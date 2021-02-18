@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CloudData } from 'angular-tag-cloud-module';
+import { Hashtag } from 'src/app/main/models/hashtag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class GlobalService {
 
   public isDebug: boolean;
   public data: CloudData[];
-  public map: Map<string, string>;
+  public map: Map<string, Hashtag>;
 
   private static instance: GlobalService = null;
 
@@ -21,7 +22,7 @@ export class GlobalService {
   { 
     this.isDebug = false;
     this.data = [];
-    this.map = new Map<string, string>();
+    this.map = new Map<string, Hashtag>();
   }
 
   public static getInstance(): GlobalService {

@@ -14,7 +14,10 @@ when="md">
 
     <ion-content>
       <ion-list>
-        <ion-list-header *ngIf="user">{{ user.displayName }}</ion-list-header>
+        <div class="ion-text-center">
+          <h1>MCoC Library</h1>
+          <ion-list-header *ngIf="user"><i>{{ user.displayName }}</i></ion-list-header>
+        </div>
         <ion-menu-toggle autoHide="false">
           <ion-item
             button
@@ -31,7 +34,4 @@ when="md">
   </ion-menu>
 
   <ion-router-outlet id="menu-content"></ion-router-outlet>
-
 </ion-split-pane>
-
-

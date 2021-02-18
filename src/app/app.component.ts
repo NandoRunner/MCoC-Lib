@@ -9,13 +9,12 @@ import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   pages: { url: string; direction: string; icon: string; text: string }[];
   user: firebase.User;
-
-  public
 
   constructor(
     private authService: AuthService,
