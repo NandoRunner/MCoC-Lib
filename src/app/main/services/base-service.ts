@@ -21,7 +21,7 @@ export class BaseService {
   protected urlByName: string;  
   protected urlHeroeCountBy: string;
 
-  urlType: UrlBaseType = UrlBaseType.IIS;
+  urlType: UrlBaseType = UrlBaseType.Azure;
 
   protected url: string;
 

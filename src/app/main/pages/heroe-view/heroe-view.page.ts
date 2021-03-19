@@ -15,10 +15,12 @@ import { GlobalService } from '../../../core/services/global.service';
 @Component({
   selector: 'app-heroe-view',
   templateUrl: './heroe-view.page.html',
-  styleUrls: ['./heroe-view.page.scss']
+  styleUrls: ['./heroe-view.page.scss'],
 })
 export class HeroeViewPage implements OnInit {
-  results: Observable<any>;
+  results: Heroe[] = [];
+  resultsFilter: Heroe[] = [];
+
   searchTerm: string;
   type: HeroeClassType = HeroeClassType.ALL;
   loading: HTMLIonLoadingElement;
@@ -42,28 +44,70 @@ export class HeroeViewPage implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.name = this.activatedRoute.snapshot.paramMap.get('name');
     this.filterType = this.activatedRoute.snapshot.paramMap.get('type');
-    this.authService.authState$.subscribe(user => (this.user = user));
+    this.authService.authState$.subscribe((user) => (this.user = user));
     await this.loadData();
   }
 
   async loadData() {
     this.loading = await this.overlayService.loading();
-
-
     if (this.filterType === null) {
-      this.results = this.heroeService.getData(this.searchTerm, this.type);
-      this.page = '';
-    } else if (this.filterType === '3') {
-      this.results = this.heroeService.getByHashtag(this.id);
-      this.page = 'hashtags';
-    } else if (this.filterType === '2') {
-      this.results = this.heroeService.getByAbility(this.id);
-      this.page = 'counters';
-    } else {
-      this.results = this.heroeService.getByAbility(this.id);
-      this.page = 'abilities';
+      this.heroeService
+        .getData(this.searchTerm, this.type)
+        .toPromise()
+        .then((res: Heroe[]) => {
+          this.results = res;
+          this.setupFilter(res);
+          this.page = '';
+        }).catch((err => {
+          console.log('err: ', err);
+        })).finally(() => {
+          this.loading.dismiss();
+        });
     }
-    this.results.pipe(take(1)).subscribe(ref => this.loading.dismiss());
+    // } else if (this.filterType === "3") {
+    //   this.results = this.heroeService.getByHashtag(this.id);
+    //   this.page = "hashtags";
+    // } else if (this.filterType === "2") {
+    //   this.results = this.heroeService.getByAbility(this.id);
+    //   this.page = "counters";
+    // } else {
+    //   this.results = this.heroeService.getByAbility(this.id);
+    //   this.page = "abilities";
+    // }
+    // this.results..pipe(take(1)).subscribe((ref) => this.loading.dismiss());
+  }
+
+  protected setupFilter(results: Heroe[]) {
+    this.resultsFilter = [];
+    results.forEach((c) => {
+      this.resultsFilter.push(c);
+    });
+  }
+
+  pesquisar(pesquisa: string) {
+    this.resultsFilter = [];
+    if (!pesquisa) {
+      this.resultsFilter = this.results;
+    } else {
+      pesquisa = pesquisa
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+      this.results.forEach((res) => {
+        if (this.normalizarNome(res, pesquisa)) {
+          this.resultsFilter.push(res);
+        }
+      });
+    }
+    this.setupFilter(this.resultsFilter);
+  }
+
+  protected normalizarNome(res: Heroe, pesquisa) {
+    const nome = res.name
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+    return nome.indexOf(pesquisa) > -1;
   }
 
   async changeType(param: any) {
@@ -76,7 +120,9 @@ export class HeroeViewPage implements OnInit {
     if (param.length > 0 && param.length < 3) {
       return;
     }
-    if (GlobalService.getInstance().isDebug) console.log('-> selectedValue: ', param);
+    if (GlobalService.getInstance().isDebug) {
+      console.log('-> selectedValue: ', param);
+    }
     this.type = HeroeClassType.ALL;
     this.searchTerm = param;
     await this.loadData();
@@ -84,11 +130,13 @@ export class HeroeViewPage implements OnInit {
 
   async onDone(o: Heroe) {
     const toUpdate = { ...o, isactive: !o.isactive };
-    //todo: call UserHeroe
+    // todo: call UserHeroe
     console.log(toUpdate);
     await this.heroeService.update(toUpdate);
     await this.overlayService.toast({
-      message: `Heroe "${o.name}" ${toUpdate.isactive ? ' added to' : ' removed from'} My Heroes!`
+      message: `Heroe "${o.name}" ${
+        toUpdate.isactive ? ' added to' : ' removed from'
+      } My Heroes!`,
     });
   }
 }
