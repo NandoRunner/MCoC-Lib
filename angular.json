@@ -19,6 +19,11 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "@angular/fire/firestore",
+              "firebase/app"
+            ],
             "assets": [
               {
                 "glob": "**/*.svg",
@@ -35,7 +40,6 @@
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               }
-   
             ],
             "styles": [
               {
@@ -69,11 +73,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },                {
+                },
+                {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-
               ]
             },
             "ci": {

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { OverlayService } from 'src/app/core/services/overlay.service';
 
@@ -51,29 +49,24 @@ export class HeroeViewPage implements OnInit {
   async loadData() {
     this.loading = await this.overlayService.loading();
     if (this.filterType === null) {
-      this.heroeService
+      this.results = await this.heroeService
         .getData(this.searchTerm, this.type)
-        .toPromise()
-        .then((res: Heroe[]) => {
-          this.results = res;
-          this.setupFilter(res);
-          this.page = '';
-        }).catch((err => {
-          console.log('err: ', err);
-        })).finally(() => {
-          this.loading.dismiss();
-        });
+        .toPromise();
+      this.page = '';
+    } else if (this.filterType === '3') {
+      this.results = await this.heroeService.getByHashtag(this.id).toPromise();
+      this.page = 'hashtags';
+    } else if (this.filterType === '2') {
+      this.results = await this.heroeService.getByAbility(this.id).toPromise();
+      this.page = 'counters';
+    } else {
+      this.results = await this.heroeService.getByAbility(this.id).toPromise();
+      this.page = 'abilities';
     }
-    // } else if (this.filterType === "3") {
-    //   this.results = this.heroeService.getByHashtag(this.id);
-    //   this.page = "hashtags";
-    // } else if (this.filterType === "2") {
-    //   this.results = this.heroeService.getByAbility(this.id);
-    //   this.page = "counters";
-    // } else {
-    //   this.results = this.heroeService.getByAbility(this.id);
-    //   this.page = "abilities";
-    // }
+    if (this.results) {
+      this.setupFilter(this.results);
+      this.loading.dismiss();
+    }
     // this.results..pipe(take(1)).subscribe((ref) => this.loading.dismiss());
   }
 
