@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { UrlBaseType } from "../models/urlBaseType.enum";
-import { GlobalService } from "../../core/services/global.service";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UrlBaseType } from '../models/urlBaseType.enum';
+import { GlobalService } from '../../core/services/global.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,13 +12,13 @@ const httpOptions = {
 
 export class BaseService {
   urlBase: string[] = [
-    "https://localhost:44342/",
-    "http://localhost/mcoc-webapi/",
-    "https://mcoc-webapi.azurewebsites.net/",
+    'https://localhost:44342/',
+    'http://localhost/mcoc-webapi/',
+    'https://mcoc-webapi.azurewebsites.net/',
   ];
 
   protected urlAll: string;
-  protected urlByName: string;  
+  protected urlByName: string;
   protected urlHeroeCountBy: string;
 
   urlType: UrlBaseType = UrlBaseType.Azure;
@@ -42,7 +42,7 @@ export class BaseService {
     return this.http.get(url).pipe(
       map((results) => {
         if (GlobalService.getInstance().isDebug) {
-          console.log("URL: ", url);
+          console.log('URL: ', url);
           console.log(logMessage, parent ? results[parent] : results);
         }
         return parent ? results[parent] : results;
@@ -55,12 +55,11 @@ export class BaseService {
     name: string,
     logMessage?: string
   ): Observable<any> {
-    
-    return this.http.post(url, { "name" : name }, httpOptions)
+    return this.http.post(url, { 'name' : name }, httpOptions)
       .pipe(
         map((results) => {
           if (GlobalService.getInstance().isDebug) {
-            console.log("URL: ", url);
+            console.log('URL: ', url);
             console.log(logMessage, results);
           }
           return results;

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  CURRENT_VERSION: '0.20.49',
+  CURRENT_VERSION: '0.21.0',
   hostingName: 'MCoC Library',
   icon: 'pulse',
   init_page: 'heroes',
